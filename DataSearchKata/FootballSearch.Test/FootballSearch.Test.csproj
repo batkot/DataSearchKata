@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="MinimalDifferenceInGoalsTeamFinderTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StreamFootbalDataProviderTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

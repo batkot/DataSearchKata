@@ -1,14 +1,13 @@
-﻿using System.CodeDom;
-using System.IO;
+﻿using System.IO;
 using System.Linq;
 using System.Text;
 using Xunit;
 
-namespace WeatherSearch.Tests
+namespace FootballSearch.Test
 {
-    public class StreamDayTemperatureDataProviderTests
+    public class StreamFootbalDataProviderTests
     {
-        private readonly FileDayTemperatureDataProvider _provider = new FileDayTemperatureDataProvider();
+        private readonly StreamFootbalDataProvider _provider = new StreamFootbalDataProvider();
 
         [Fact]
         public void EmptyStream_ReturnsEmptyEnumerable()
@@ -33,9 +32,9 @@ namespace WeatherSearch.Tests
         }
 
         [Theory]
-        [InlineData("12 100 1")]
-        [InlineData("   12 32 21")]
-        [InlineData("12312 22 11 dasd sd ad a")]
+        [InlineData("    1. Arsenal         38    26   9   3    79  -  36    87")]
+        [InlineData("    8. Aston_Villa     38    12  14  12    46  -  47    5")]
+        [InlineData("5. Leeds           38    18  12   8    53  -  37    66")]
         public void ProperFormatString_ParsesData(string properFormatString)
         {
             using (var stream = CreateStringStream(properFormatString))
@@ -49,15 +48,15 @@ namespace WeatherSearch.Tests
         public void MultilineInput_Parses()
         {
             var stringBuilder = new StringBuilder();
-            stringBuilder.AppendLine("12 100 1");
-            stringBuilder.AppendLine("asd sdas s");
-            stringBuilder.AppendLine("11 32 1");
+            stringBuilder.AppendLine("    1. Arsenal         38    26   9   3    79  -  36    87");
+            stringBuilder.AppendLine("    8. Aston_Villa     38    12  14  12    46  -  47    5");
+            stringBuilder.AppendLine("   ------------------------------------------------------");
 
             using (var stream = CreateStringStream(stringBuilder.ToString()))
             {
                 var result = _provider.ReadData(stream).ToArray();
                 Assert.Equal(2, result.Length);
-                Assert.True((new[] { 12, 11 }).SequenceEqual(result.Select(d => d.DayNo)));
+                Assert.True((new int[] { 79, 46 }).SequenceEqual(result.Select(team => team.ScoredGoals)));
             }
         }
 
