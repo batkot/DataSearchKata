@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SearchCore;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -8,28 +9,19 @@ using System.Threading.Tasks;
 
 namespace WeatherSearch
 {
-    public class FileDayTemperatureDataProvider
+    public class FileDayTemperatureDataProvider : StreamDataReader<DayTemperatureData>
     {
-        public IEnumerable<DayTemperatureData> ReadData(Stream dataStream)
+        protected override string LineMatchPattern
         {
-            using (var reader = new StreamReader(dataStream))
-            {
-                while (!reader.EndOfStream)
-                {
-                    var line = reader.ReadLine();
-                    var matchResult = _dataMatchRegex.Match(line);
-
-                    if (matchResult.Success)
-                    {
-                        yield return new DayTemperatureData(
-                            int.Parse(matchResult.Groups[1].Value),
-                            int.Parse(matchResult.Groups[2].Value),
-                            int.Parse(matchResult.Groups[3].Value));
-                    }
-                }
-            }
+            get { return @"^\s*(\d+)\s+(\d+)\s+(\d+)"; }
         }
 
-        private readonly Regex _dataMatchRegex = new Regex(@"^\s*(\d+)\s+(\d+)\s+(\d+)");
+        protected override DayTemperatureData ParseRegexResult(Match regexMatch)
+        {
+            return new DayTemperatureData(
+                            int.Parse(regexMatch.Groups[1].Value),
+                            int.Parse(regexMatch.Groups[2].Value),
+                            int.Parse(regexMatch.Groups[3].Value)); ;
+        }
     }
 }

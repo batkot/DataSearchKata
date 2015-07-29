@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootballSearch", "FootballS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootballSearch.Test", "FootballSearch.Test\FootballSearch.Test.csproj", "{3328AC05-7BC2-4857-96C6-53CFF2546343}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SearchCore", "SearchCore\SearchCore.csproj", "{B170634E-339B-457A-90F8-14CEAAF01058}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SearchCore.Tests", "SearchCore.Tests\SearchCore.Tests.csproj", "{5CB1D9B9-1CDE-43FA-B9C0-1A5414874202}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{3328AC05-7BC2-4857-96C6-53CFF2546343}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3328AC05-7BC2-4857-96C6-53CFF2546343}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3328AC05-7BC2-4857-96C6-53CFF2546343}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B170634E-339B-457A-90F8-14CEAAF01058}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B170634E-339B-457A-90F8-14CEAAF01058}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B170634E-339B-457A-90F8-14CEAAF01058}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B170634E-339B-457A-90F8-14CEAAF01058}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5CB1D9B9-1CDE-43FA-B9C0-1A5414874202}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5CB1D9B9-1CDE-43FA-B9C0-1A5414874202}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5CB1D9B9-1CDE-43FA-B9C0-1A5414874202}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5CB1D9B9-1CDE-43FA-B9C0-1A5414874202}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

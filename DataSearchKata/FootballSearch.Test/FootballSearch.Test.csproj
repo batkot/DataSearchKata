@@ -62,6 +62,10 @@
       <Project>{E53EBA45-0FE6-4754-B11F-86FE47C6D564}</Project>
       <Name>FootballSearch</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SearchCore\SearchCore.csproj">
+      <Project>{b170634e-339b-457a-90f8-14ceaaf01058}</Project>
+      <Name>SearchCore</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />

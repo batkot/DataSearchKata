@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SearchCore;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -8,28 +9,18 @@ using System.Threading.Tasks;
 
 namespace FootballSearch
 {
-    public class StreamFootbalDataProvider
+    public class StreamFootbalDataProvider : StreamDataReader<FootballTeamData>
     {
-        public IEnumerable<FootballTeamData> ReadData(Stream dataStream)
+        protected override string LineMatchPattern
         {
-            using (var reader = new StreamReader(dataStream))
-            {
-                while (!reader.EndOfStream)
-                {
-                    var line = reader.ReadLine();
-                    var matchResult = _dataMatchRegex.Match(line);
-
-                    if (matchResult.Success)
-                    {
-                        yield return new FootballTeamData(
-                            matchResult.Groups[1].Value,
-                            int.Parse(matchResult.Groups[2].Value),
-                            int.Parse(matchResult.Groups[3].Value));
-                    }
-                }
-            }
+            get { return @"^\s*\d+\.\s+([^\s]+).+\s+(\d+)\s+\-\s+(\d+)"; }
         }
 
-        private readonly Regex _dataMatchRegex = new Regex(@"^\s*\d+\.\s+([^\s]+).+\s+(\d+)\s+\-\s+(\d+)");
+        protected override FootballTeamData ParseRegexResult(Match regexMatch)
+        {
+            return new FootballTeamData(regexMatch.Groups[1].Value,
+                                        int.Parse(regexMatch.Groups[2].Value),
+                                        int.Parse(regexMatch.Groups[3].Value)); ;
+        }
     }
 }
