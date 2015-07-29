@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Xunit;
 
 namespace WeatherSearch.Tests
@@ -32,6 +33,12 @@ namespace WeatherSearch.Tests
             var result = _finder.Find(days);
 
             Assert.Equal(4, result.DayNo);
+        }
+
+        [Fact]
+        public void NullGiven_ArgumentExceptionThrown()
+        {
+            Assert.Throws<ArgumentNullException>(() => _finder.Find(null));
         }
     }
 }
